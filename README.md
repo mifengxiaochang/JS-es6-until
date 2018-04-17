@@ -30,3 +30,55 @@ let exceptArr = a1.filter(ea=>a2.every(eb=>eb!==ea));
 
 ```
 - Intersect数组取交集
+```Js
+//Way1
+let intersectionSet = new Set([...arr1].filter(x => arr2.has(x)));
+//Way2
+var Intersect=()=>{
+  var intersect = [];
+  for (var i = 0; i < arr1.length; i++) {
+      if (arr2.indexOf(arr1[i]) > -1) {
+          intersect.push(arr1[i]);
+      }
+  }
+  return intersect;
+}
+//Way3
+function Intersect(a, b) { 
+    var result = [];
+    for(var i = 0; i < b.length; i ++) {
+        var temp = b[i];
+        for(var j = 0; j < a.length; j ++) {
+            if(temp === a[j]) {
+                result.push(temp);
+                break;
+            }
+        }
+    }
+    return array_remove_repeat(result);
+}
+
+function array_remove_repeat(a) { // 去重
+    var r = [];
+    for(var i = 0; i < a.length; i ++) {
+        var flag = true;
+        var temp = a[i];
+        for(var j = 0; j < r.length; j ++) {
+            if(temp === r[j]) {
+                flag = false;
+                break;
+            }
+        }
+        if(flag) {
+            r.push(temp);
+        }
+    }
+    return r;
+}
+```
+- 并集
+```JS
+  // way1
+let unionSet = new Set([...a, ...b]);
+```
+下班咯先跑咯┏(＾0＾)┛
