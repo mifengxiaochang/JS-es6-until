@@ -80,5 +80,83 @@ function array_remove_repeat(a) { // 去重
 ```JS
   // way1
 let unionSet = new Set([...a, ...b]);
+//way 2
+var union = (a, b) => {
+    return array_remove_repeat(a.concat(b));//上面去重
+}
 ```
-下班咯先跑咯┏(＾0＾)┛
+- 排序
+```JS
+Array.prototype.orderBy = (property,byDesc = false) => {
+        return (pre, next) => {
+            let p = pre[property],
+                n = next[property];
+            if (!isNaN(Number(p)) && !isNaN(Number(n))) {
+                p = Number(p);
+                n = Number(n);
+                if (p === n) {
+                    return 0;
+                } else {
+                    return byDesc ? (p > n ? -1 : 1) : (p > n ? 1 : -1);
+                }
+            } else {
+                return byDesc ? n.localeCompare(p) : p.localeCompare(n);
+            }
+        };
+}
+```
+- 深克隆数组
+```JS
+  let deepCloneObjArray = (_array) => {
+    return [].concat(JSON.parse(JSON.stringify(_array)));
+  }
+```
+-判断数组
+```JS
+  var isArray = (obj)=> {
+    return Object.prototype.toString.call(obj) === '[object Array]';
+  }
+```
+
+##数字、字符串、对象(⊙o⊙)…
+- 忽略大小写相等
+```Js
+  let EqualsIgnoreCase  = (str1,str2) => {  
+    if (str1.toLowerCase() == str2.toLowerCase()) {
+        return 1; // true
+    }
+    else {
+        return 0; // false
+    }
+  }
+```
+- 是否是整数
+```JS
+  
+  let isInt = (num) => {
+    var partten = /(^[1-9][0-9]*$)|(^[0-9]$)/;
+    return partten.test(num);
+  }
+
+```
+- 字符串是否为空
+```JS
+  const isNullorEmpty = (str) => {
+    return str == undefined || str == null || empty(str);    
+  }
+  const empty = (str) => {
+    return str.trim() == '';    
+  }
+```
+
+- 判断空对象
+```JS
+   const isEmptyObject = (e) =>{
+    let t;
+    for (t in e) {
+        return false;
+    } return true;
+  };
+```
+
+
