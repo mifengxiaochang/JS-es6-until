@@ -107,15 +107,66 @@ Array.prototype.orderBy = (property,byDesc = false) => {
 ```
 - 深克隆数组
 ```JS
-  let deepCloneObjArray = (_array) => {
+ let deepCloneObjArray = (_array) => {
     return [].concat(JSON.parse(JSON.stringify(_array)));
   }
+  
+  
+  //针对对象引用问题
+  let deepCloneReferObjArray = (_array) => {
+    return  [].concat(JSON.parse(JSON.stringify(_array, (key, value) => {
+                if (typeof value === 'object' && value !== null) {
+                    if (cache.indexOf(value) !== -1) {
+                        return;
+                    }
+                    cache.push(value);
+                }
+                return value;
+            })))
+  }
+  
+ 
+  
 ```
--判断数组
+- 判断数组
 ```JS
   var isArray = (obj)=> {
     return Object.prototype.toString.call(obj) === '[object Array]';
   }
+```
+- 对象数组指定属性是否相等
+```JS
+/**
+ * 判断一个集合内的每个对象的指定属性的值是否全部相同
+ * @param {any} items
+ * @param {any} property
+ */
+export function hasValueAllSame(items, propertyName) {
+    if (items == null || items.length == 0)
+        return false;
+
+    if (typeof items[0] == 'string') {
+        for (let item of items) {
+            if (item == null && items[0] == null) {
+                continue;
+            }
+            if (item != items[0]) {
+                return false;
+            }
+        }
+        return true;
+    } else {
+        for (let item of items) {
+            if (item[propertyName] == null && items[0][propertyName] == null) {
+                continue;
+            }
+            if (item[propertyName] != items[0][propertyName]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 ```
 
 ## 数字、字符串、对象(⊙o⊙)…
@@ -158,5 +209,244 @@ Array.prototype.orderBy = (property,byDesc = false) => {
     } return true;
   };
 ```
+- 深拷贝（解决对象引用问题）
+```JS
+function deepCopy(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
 
+function deepReferenceObjCopy(obj){
+      return JSON.parse(JSON.stringify(obj, (key, value) => {
+                if (typeof value === 'object' && value !== null) {
+                    if (cache.indexOf(value) !== -1) {
+                        return;
+                    }
+                    cache.push(value);
+                }
+                return value;
+            }))
+}
+
+```
+- long 
+ 使用string模拟大数减法  
+```JS
+ function sub(num1, num2) {
+    // 标识结果是否为负  
+    let isNeg = false;
+    let result = '';
+    // 处理 负号  
+    if (num1.indexOf('-') != -1 && num2.indexOf('-') == -1) {
+        num1 = num1.replace("-", "");
+        return "-" + add(num1, num2);
+    } else if (num1.indexOf('-') != -1 && num2.indexOf('-') != -1) {
+        num2 = num2.replace("-", "");
+        num1 = num1.replace("-", "");
+        return sub(num2, num1);
+    } else if (num1.indexOf('-') == -1 && num2.indexOf('-') != -1) {
+        return add(num1, num2);
+    }
+    // 判断两个数谁更大，使用大的减小的  
+    if (isSmall(num1, num2)) {
+        // 交换二者的值  
+        let temp = num1;
+        num1 = num2;
+        num2 = temp;
+        isNeg = true;
+    }
+    // 两个正数相减  
+    if (num1.length < num2.length) {
+        num1 = castSame(num1, num2.length);
+    } else if (num1.length > num2.length) {
+        num2 = castSame(num2, num1.length);
+    }
+
+    let index = num1.length - 1;
+    let res = 0;
+    // 借位标识  
+    let borrow = 0;
+    while (index >= 0) {
+        let num1Int = parseInt(num1[index]);
+        let num2Int = parseInt(num2[index]);
+        if ((num1Int - borrow) < num2Int) {
+            res = 10 + num1Int - borrow - num2Int;
+            borrow = 1;
+        } else {
+            res = num1Int - borrow - num2Int;
+            borrow = 0;
+        }
+        result = res.toString() + result;
+        index--;
+    }
+
+    // 去掉前面的无效的0  
+    let resultStr = "";
+    if (isNeg) {
+        resultStr = removeZero(result);
+        resultStr = "-" + resultStr;
+    } else {
+        resultStr = removeZero(result);
+    }
+    return resultStr;
+}
+// 判断两个参数谁更小(输入的两个参数必须都为正数）  
+export function isSmall(num1, num2) {
+    if (num1.length < num2.length) {
+        return true;
+    } else if (num1.length > num2.length) {
+        return false;
+    }
+    // 两个数 总位数一样  
+    let index = 0;
+
+    while (index < num1.length) {
+        let num1Temp = parseInt(num1[index]);
+        let num2Temp = parseInt(num2[index]);
+        if (num1Temp < num2Temp) {
+            return true;
+        } else if (num1Temp > num2Temp) {
+            return false;
+        }
+        index++;
+    }
+    return false;
+}
+
+// 去掉最前面的无效的0（参数必须为正数）  
+function removeZero(input) {
+    let length = input.length;
+    let i = 0;
+    for (; i < length; i++) {
+        let current = input[i];
+        if (current != '0') {
+            break;
+        }
+    }
+    if (i === length) {
+        return '0';
+    } else {
+        return input.substring(i);
+    }
+}
+function castSame(input, len) {
+    if (input.length > len) {
+        return null;
+    }
+    let result = '';
+    let subLength = len - input.length;
+    for (let i = 0; i < subLength; i++) {
+        result = result + '0';
+    }
+    return result + input;
+}
+
+// 使用string模拟大数加法  
+ function add(num1, num2) {
+    let result = '';
+    // 标识结果是否为负  
+    let isNeg = false;
+    // 处理符号  
+    if (num1.indexOf('-') != -1 && num2.indexOf('-') != -1) {
+        num1 = num1.replace("-", "");
+        num2 = num2.replace("-", "");
+        isNeg = true;
+    } else if (num1.indexOf('-') != -1 && num2.indexOf('-') == -1) {
+        num1 = num1.replace("-", "");
+        return sub(num2, num1);
+    } else if (num1.indexOf('-') == -1 && num2.indexOf('-') != -1) {
+        num2 = num2.replace("-", "");
+        return sub(num1, num2);
+    }
+    // 将两个加数处理成长度相同的字符串，长度不够，使用0填充  
+    if (num1.length > num2.length) {
+        num2 = castSame(num2, num1.length);
+    } else if (num1.length < num2.length) {
+        num1 = castSame(num1, num2.length);
+    }
+
+    let length = num1.length;
+    let index = length - 1;
+    // 进位标识  
+    let add = 0;
+    // 当前位的结果  
+    let res = 0;
+    let sum = 0;
+    let num1Int;
+    let num2Int;
+    while (index >= 0) {
+        num1Int = parseInt(num1[index]);
+        num2Int = parseInt(num2[index]);
+        sum = num1Int + num2Int + add;
+        add = parseInt(sum / 10);
+        res = sum % 10;
+        result = res.toString() + result;
+        index--;
+    }
+    // 处理最后一个进位  
+    if (add == 1) {
+        result = '1' + result;
+    }
+    let resultStr = removeZero(result);
+    if (isNeg) {
+        resultStr = "-" + resultStr;
+    }
+    return resultStr;
+}
+
+
+```
+
+## 时间
+- 转换 C# ticks
+```JS
+   const defaultTicks = 621355968000000000;
+   let convertDateToUtcTicks = (date = new Date()) => {
+      return date.getTime() * 10000 + defaultTicks;
+    }
+```
+- local
+ ```JS
+  convertUtcTicksToLocalDate(ticks) {
+    return new Date((ticks - defaultTicks) / 10000);
+  }
+ ```
+ - sort
+ ```JS
+  sortDatas(d1, d2, sortBy, asc) {
+    let i1 = d1[sortBy], i2 = d2[sortBy];
+    if (typeof i1 === "string")
+        i1 = i1.toLocaleLowerCase();
+    if (typeof i2 == "string")
+        i2 = i2.toLocaleLowerCase();
+    if (i1 == i2)
+        return 0;
+    let result = asc ? (i1 < i2) : (i1 > i2);
+    return result ? -1 : 1;
+  }
+ 
+ ```
+- 格式化
+```JS
+/**
+ * 格式化Date
+ * @param {Date} date
+ * @param {string} format 自定义格式下传递该参数，否则使用cp中设置的format
+ */
+  formatDate(date, hasTime, format) {
+        if (hasTime == null)
+            hasTime = true;
+
+        if (typeof date == 'number')
+            date = new Date(date);
+        else if (typeof date == 'string')
+            date = new Date(parseInt(date));
+
+        if (format == null) {
+            return window.formatDateTime(date, hasTime);
+        } else {
+            return $$.gcalendar('toFormatString', { date: date, format: format });
+        }
+    }
+
+```
 
