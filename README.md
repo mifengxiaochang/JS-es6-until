@@ -105,27 +105,30 @@ Array.prototype.orderBy = (property,byDesc = false) => {
         };
 }
 ```
+
+    
 - 深克隆数组
+
 ```JS
  let deepCloneObjArray = (_array) => {
     return [].concat(JSON.parse(JSON.stringify(_array)));
-  }
+  }  
+```
+       针对对象引用问题（Converting circular structure to JSON）
   
-``` 
-  - 针对对象引用问题（Converting circular structure to JSON）
-    ```JS
-      let deepCloneReferObjArray = (_array) => {
-        return  [].concat(JSON.parse(JSON.stringify(_array, (key, value) => {
-                    if (typeof value === 'object' && value !== null) {
-                        if (cache.indexOf(value) !== -1) {
-                            return;
-                        }
-                        cache.push(value);
+```JS
+  let deepCloneReferObjArray = (_array) => {
+    return  [].concat(JSON.parse(JSON.stringify(_array, (key, value) => {
+                if (typeof value === 'object' && value !== null) {
+                    if (cache.indexOf(value) !== -1) {
+                        return;
                     }
-                    return value;
-                })))
-      }
-    ```
+                    cache.push(value);
+                }
+                return value;
+            })))
+  }
+```
 - 判断数组
 ```JS
   var isArray = (obj)=> {
