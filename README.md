@@ -118,7 +118,7 @@ Array.prototype.orderBy = (property,byDesc = false) => {
   }
 ```
 
-##数字、字符串、对象(⊙o⊙)…
+## 数字、字符串、对象(⊙o⊙)…
 - 忽略大小写相等
 ```Js
   let EqualsIgnoreCase  = (str1,str2) => {  
