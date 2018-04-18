@@ -111,23 +111,21 @@ Array.prototype.orderBy = (property,byDesc = false) => {
     return [].concat(JSON.parse(JSON.stringify(_array)));
   }
   
-  
-  //针对对象引用问题
-  let deepCloneReferObjArray = (_array) => {
-    return  [].concat(JSON.parse(JSON.stringify(_array, (key, value) => {
-                if (typeof value === 'object' && value !== null) {
-                    if (cache.indexOf(value) !== -1) {
-                        return;
+``` 
+  - 针对对象引用问题（Converting circular structure to JSON）
+    ```JS
+      let deepCloneReferObjArray = (_array) => {
+        return  [].concat(JSON.parse(JSON.stringify(_array, (key, value) => {
+                    if (typeof value === 'object' && value !== null) {
+                        if (cache.indexOf(value) !== -1) {
+                            return;
+                        }
+                        cache.push(value);
                     }
-                    cache.push(value);
-                }
-                return value;
-            })))
-  }
-  
- 
-  
-```
+                    return value;
+                })))
+      }
+    ```
 - 判断数组
 ```JS
   var isArray = (obj)=> {
@@ -141,7 +139,7 @@ Array.prototype.orderBy = (property,byDesc = false) => {
  * @param {any} items
  * @param {any} property
  */
-export function hasValueAllSame(items, propertyName) {
+ function hasValueAllSame(items, propertyName) {
     if (items == null || items.length == 0)
         return false;
 
