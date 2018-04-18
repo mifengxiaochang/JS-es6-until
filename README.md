@@ -1,6 +1,9 @@
 # 整理一些JS小方法
+---
+
+---
 ## 数组
-- Except取差集
+#### Except取差集
 ```JS
   //way1
 Array.prototype.diff = function(a) {
@@ -29,7 +32,7 @@ let exceptArr = a1.filter(ea=>a2.every(eb=>eb!==ea));
 //filter筛选a集合的元素，如果当前筛选的元素与b集合中的every每一个元素都不相等vb!==va，则将此元素加入到返回集合中
 
 ```
-- Intersect数组取交集
+#### Intersect数组取交集
 ```Js
 //Way1
 let intersectionSet = new Set([...arr1].filter(x => arr2.has(x)));
@@ -76,7 +79,7 @@ function array_remove_repeat(a) { // 去重
     return r;
 }
 ```
-- 并集
+#### 并集
 ```JS
   // way1
 let unionSet = new Set([...a, ...b]);
@@ -85,7 +88,7 @@ var union = (a, b) => {
     return array_remove_repeat(a.concat(b));//上面去重
 }
 ```
-- 排序
+#### 排序
 ```JS
 Array.prototype.orderBy = (property,byDesc = false) => {
         return (pre, next) => {
@@ -106,8 +109,7 @@ Array.prototype.orderBy = (property,byDesc = false) => {
 }
 ```
 
-    
-- 深克隆数组
+#### 深克隆数组
 
 ```JS
  let deepCloneObjArray = (_array) => {
@@ -129,13 +131,13 @@ Array.prototype.orderBy = (property,byDesc = false) => {
             })))
   }
 ```
-- 判断数组
+#### 判断数组
 ```JS
   var isArray = (obj)=> {
     return Object.prototype.toString.call(obj) === '[object Array]';
   }
 ```
-- 对象数组指定属性是否相等
+#### 对象数组指定属性是否相等
 ```JS
 /**
  * 判断一个集合内的每个对象的指定属性的值是否全部相同
@@ -171,7 +173,7 @@ Array.prototype.orderBy = (property,byDesc = false) => {
 ```
 
 ## 数字、字符串、对象(⊙o⊙)…
-- 忽略大小写相等
+#### 忽略大小写相等
 ```Js
   let EqualsIgnoreCase  = (str1,str2) => {  
     if (str1.toLowerCase() == str2.toLowerCase()) {
@@ -182,7 +184,7 @@ Array.prototype.orderBy = (property,byDesc = false) => {
     }
   }
 ```
-- 是否是整数
+#### 是否是整数
 ```JS
   
   let isInt = (num) => {
@@ -191,7 +193,7 @@ Array.prototype.orderBy = (property,byDesc = false) => {
   }
 
 ```
-- 字符串是否为空
+#### 字符串是否为空
 ```JS
   const isNullorEmpty = (str) => {
     return str == undefined || str == null || empty(str);    
@@ -201,7 +203,7 @@ Array.prototype.orderBy = (property,byDesc = false) => {
   }
 ```
 
-- 判断空对象
+#### 判断空对象
 ```JS
    const isEmptyObject = (e) =>{
     let t;
@@ -210,7 +212,7 @@ Array.prototype.orderBy = (property,byDesc = false) => {
     } return true;
   };
 ```
-- 深拷贝（解决对象引用问题）
+#### 深拷贝（解决对象引用问题）
 ```JS
 function deepCopy(obj) {
     return JSON.parse(JSON.stringify(obj));
@@ -229,7 +231,7 @@ function deepReferenceObjCopy(obj){
 }
 
 ```
-- long 
+#### long 
  使用string模拟大数减法  
 ```JS
  function sub(num1, num2) {
@@ -398,7 +400,7 @@ function castSame(input, len) {
 ```
 
 ## 时间
-- 转换 C# ticks
+#### 转换 C# ticks
 ```JS
    const defaultTicks = 621355968000000000;
    let convertDateToUtcTicks = (date = new Date()) => {
@@ -426,7 +428,7 @@ function castSame(input, len) {
   }
  
  ```
-- 格式化
+#### 格式化
 ```JS
 /**
  * 格式化Date
