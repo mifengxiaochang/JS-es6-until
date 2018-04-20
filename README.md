@@ -449,6 +449,5 @@ function castSame(input, len) {
             return $$.gcalendar('toFormatString', { date: date, format: format });
         }
     }
-
 ```
 
