@@ -170,6 +170,18 @@ Array.prototype.orderBy = (property,byDesc = false) => {
     }
 }
 ```
+#### 过滤数据
+```JS
+const posts = [
+  {id: 1, title: 'Title 1'},
+  {id: 2, title: 'Title 2'},
+  {id: 1, title: 'Title 1.1'}
+];
+// 找到第一个id为1的数据
+const title1 = posts.find(p => p.id === 1).title;
+
+const title1s = posts.filter(p => p.id === 1).title;//找到所有id为1的数据
+```
 
 ## 数字、字符串、对象(⊙o⊙)…
 #### 忽略大小写相等
@@ -190,6 +202,14 @@ Array.prototype.orderBy = (property,byDesc = false) => {
     var partten = /(^[1-9][0-9]*$)|(^[0-9]$)/;
     return partten.test(num);
   }
+
+```
+#### 删除对象某个字段
+```JS
+const user = {name: 'S K', age: 23, password: 'SantaCl@use'};
+const newUser = {...user};
+delete newUser.password;
+// {name: "S K", age: 23}不影响远对象
 
 ```
 #### 字符串是否为空
