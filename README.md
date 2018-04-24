@@ -132,10 +132,22 @@ Array.prototype.orderBy = (property,byDesc = false) => {
 ```
 #### 判断数组
 ```JS
+//way1
   var isArray = (obj)=> {
     return Object.prototype.toString.call(obj) === '[object Array]';
   }
+  
+  //way2
+  Array.isArray(arr)
+  
+  //判断对象是否为数组
+  Object.isArray(obj)
 ```
+#### 检索数据是否包含某个数据
+```JS
+[1,2,3,4].includes(5);//false
+```
+
 #### 对象数组指定属性是否相等
 ```JS
 /**
@@ -169,6 +181,7 @@ Array.prototype.orderBy = (property,byDesc = false) => {
         return true;
     }
 }
+
 ```
 #### 过滤数据
 ```JS
@@ -182,6 +195,25 @@ const title1 = posts.find(p => p.id === 1).title;
 
 const title1s = posts.filter(p => p.id === 1).title;//找到所有id为1的数据
 ```
+
+- keys() - 获得数组中所有元素的键名（实际上就是下标索引号）
+- values() - 获得数组中所有元素的数据
+- entries() - 获得数组中所有数据的键名和数据
+```JS
+for(let index of ['a','b'].keys()){
+  console.log(index);
+}//=>0   1
+
+for(let item of ['a','b'].values()){
+  console.log(item);
+}//=>'a'   'b'
+
+for(let [index,iten] of ['a','b'].values()){
+  console.log(index,iten);
+}//=>0 'a'   1 'b'
+```
+
+
 
 ## 数字、字符串、对象(⊙o⊙)…
 #### 忽略大小写相等
@@ -197,12 +229,27 @@ const title1s = posts.filter(p => p.id === 1).title;//找到所有id为1的数�
 ```
 #### 是否是整数
 ```JS
-  
+  //way1
   let isInt = (num) => {
     var partten = /(^[1-9][0-9]*$)|(^[0-9]$)/;
     return partten.test(num);
   }
+  //way2
+  
+Number.isInteger(21)//true
+Number.isInteger(1.11)//false
 
+```
+
+顺便记录下
+
+转换 Number.parseInt - 将字符串或数字转换为整数 Number.parseFloat - 将字符串或数字转换为浮点数
+
+#### 是否是NaN
+```JS
+//测试是否NaN
+Number.isNaN(Nan)//true
+Number.isNaN(1)//false
 ```
 #### 删除对象某个字段
 ```JS
@@ -250,6 +297,24 @@ function deepReferenceObjCopy(obj){
 }
 
 ```
+#### 合并对象
+```JS
+let a = {a:1,b:2}, b = {b:3}, c = {b:4,c:5};
+let d = Object.assign({}, a, b, c);
+//第一个参数增加一个空对象，在合并时让它被更新，不影响实际的对象变量内容
+console.log(d);
+//{a:1,b:4,c:5}//与上面的方式合并结果一致，使用这种方式, a 对象的内容就不会被影响了
+```
+### 对象内容集合
+- Object.keys() - 获得对象中所有的键名，以数组的形式返回
+- Object.values() - 获得对象中所有的值内容，以数组的形式返回
+- Object.entries() - 获得对象中所有的成员数据，以数组的形式返回，成员的内容也是数组形式
+```JS
+let obj={a:1,b:2};
+let names = Object.keys(obj);//=>['a','b']
+let values = Object.entries(obj);//[['a',1]['b',2]]
+```
+
 #### long 
  使用string模拟大数减法  
 ```JS
