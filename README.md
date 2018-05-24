@@ -269,6 +269,20 @@ delete newUser.password;
   }
 ```
 
+#### 字符串去首尾空格
+```JS
+//way1
+ let a=" 123 " 
+ a.trim();//=>"123"
+ 
+ //way2
+ let trim(str)=>{
+  return str.replace(/(^\s*)|(\s*$)/g, ""); 
+ }
+
+
+```
+
 #### 判断空对象
 ```JS
    const isEmptyObject = (e) =>{
