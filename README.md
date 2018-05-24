@@ -276,11 +276,16 @@ delete newUser.password;
  a.trim();//=>"123"
  
  //way2
- let trim(str)=>{
+ let trim = (str)=>{
   return str.replace(/(^\s*)|(\s*$)/g, ""); 
  }
 
 
+```
+
+####计算页数
+```JS
+let pageCont = Math.ceil(totalCount / pageSize);
 ```
 
 #### 判断空对象
