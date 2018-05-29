@@ -245,6 +245,16 @@ Number.isInteger(1.11)//false
 
 转换 Number.parseInt - 将字符串或数字转换为整数 Number.parseFloat - 将字符串或数字转换为浮点数
 
+### 单词匹配
+```jS
+let url= "https://github.com/mifengxiaochang/JS-es6-until/edit/master/README.md";
+let matchWord = new RegExp('\\b(' + word + ')\\b');//word变量 \b正则单词匹配
+      if (url.match(matchWord)) {
+        
+      }
+
+```
+
 #### 是否是NaN
 ```JS
 //测试是否NaN
