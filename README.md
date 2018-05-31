@@ -193,7 +193,7 @@ const posts = [
 // 找到第一个id为1的数据
 const title1 = posts.find(p => p.id === 1).title;
 
-const title1s = posts.filter(p => p.id === 1).title;//找到所有id为1的数据
+const title1s = posts.filter(p => p.id === 1);//找到所有id为1的数据
 ```
 
 - keys() - 获得数组中所有元素的键名（实际上就是下标索引号）
