@@ -578,3 +578,56 @@ export function getQueryString(url) {
 }
 
 ```
+
+
+
+1.下面代码的输出结果是什么？
+```
+function MyObj(){
+  this.p.pid++
+}
+MyObj.prototype.p = {'pid': 0}
+MyObj.prototype.getNum = function(num){
+  return this.p.pid + num
+}
+var _obj1 = new MyObj()
+var _obj2 = new MyObj()
+console.log(_obj1.getNum(1)+_obj2.getNum(2))  // 7
+```
+2.请手绘出html渲染结果，如下图：
+3.请阅读以下代码，给出运行结果。
+```
+Var func = (function(a) {
+  this.a = a;
+  return function(a) {
+  a += this.a;
+  return a;
+}
+})(function(a, b){
+  return a;
+}(1, 2));
+func(4);  // 5
+```
+4. 下面代码的输出结果是什么。
+if(!(“a” in window)) {
+var a = 1;
+}
+console.log (a);   // undefined
+5. 请写出单例模式的实现，至少两种。
+6.请描述React组件加载时生命周期执行顺序，组件更新时生命周期执行顺序。
+7.HTTP 状态消息 200 302 304 403 404 500 分别表示什么？
+8.请写出ES6中Array.isArray()的代码实现。
+/**
+ * 判断一个对象是否是数组，参数不是对象或者不是数组，返回false
+ *
+ * @param {Object} arg 需要测试是否为数组的对象
+ * @return {Boolean} 传入参数是数组返回true，否则返回false
+ */
+ ```
+Array.prototype.isArray = function(arg) {
+  if (typeof arg === 'object') {
+    return Object.prototype.toString.call(arg) === '[object Array]';
+  }
+  return false;
+}
+```
