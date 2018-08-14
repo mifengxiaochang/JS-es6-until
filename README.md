@@ -306,6 +306,16 @@ let pageCont = Math.ceil(totalCount / pageSize);
         return false;
     } return true;
   };
+  
+//  敷衍eslint
+export const isEmptyObject = (e) =>{
+  // let t;
+  for (const t in e) {
+    if (Object.prototype.hasOwnProperty.call(e, t)) {
+      return false;
+    }
+  } return true;
+};
 ```
 #### 深拷贝（解决对象引用问题）
 ```JS
