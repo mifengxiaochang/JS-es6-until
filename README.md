@@ -78,6 +78,11 @@ function array_remove_repeat(a) { // 去重
     return r;
 }
 ```
+#### 删除数组最后一个元素
+```JS
+var x = ['1','2','3','4'];
+   x.splice(-1,1);
+```
 #### 并集
 ```JS
   // way1
