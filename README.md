@@ -30,6 +30,19 @@ Array.prototype.diff = function(a) {
 let exceptArr = a1.filter(ea=>a2.every(eb=>eb!==ea));
 //filter筛选a集合的元素，如果当前筛选的元素与b集合中的every每一个元素都不相等vb!==va，则将此元素加入到返回集合中
 
+handlePrint=()=>{
+    const { discData } = this.props;
+    if(this.state.showTable && !isEmptyObject(discData)){
+      const printContent = document.getElementById('discTable').innerHTML;
+      const frame = document.getElementById('printWrap');
+      frame.contentDocument.write(printContent);
+      frame.contentDocument.close();
+      frame.contentWindow.print();
+    }else{
+      message.warning('请先执行统计操作!');
+    }
+  }
+
 ```
 #### Intersect数组取交集
 ```Js
