@@ -362,6 +362,21 @@ let d = Object.assign({}, a, b, c);
 console.log(d);
 //{a:1,b:4,c:5}//与上面的方式合并结果一致，使用这种方式, a 对象的内容就不会被影响了
 ```
+### 将一个对象的部分属性传给另一个对象
+```
+ //way1
+ const pick = (obj, arr) => {
+   return arr.reduce(
+    (iter, val) => (val in obj && (iter[val] = obj[val]), iter),
+  //   {}
+  );
+};
+
+//way2
+
+
+```
+
 ### 对象内容集合
 - Object.keys() - 获得对象中所有的键名，以数组的形式返回
 - Object.values() - 获得对象中所有的值内容，以数组的形式返回
