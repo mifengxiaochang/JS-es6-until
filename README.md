@@ -584,6 +584,13 @@ function castSame(input, len) {
   }
  
  ```
+ 
+ #### 格式化yyyyMMddToYYYY-MM-DD
+ ```
+var r="20151201".replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3")
+console.log(r);//2015-12-01
+ 
+ ```
 #### 格式化
 ```JS
 /**
