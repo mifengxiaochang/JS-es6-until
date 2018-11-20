@@ -91,6 +91,36 @@ function array_remove_repeat(a) { // 去重
     return r;
 }
 ```
+#### 对对象数组某属性求和
+```jS
+const getSum = (arr,prop)=>{
+  const total = arr.slice(10).reduce((sum, num) => {
+      return sum + Number(num[prop]);
+    }, 0) ;
+    return total;
+}
+
+    
+const getTop11 = (arr, prop) => {
+  let attr = {};
+  let rank;
+  if (arr.length > 11) {
+    const topTen = arr.slice(0, 10);
+    rank = topTen;
+    // 其他求平均值
+    attr = (arr.slice(10).reduce((sum, num) => {
+      return sum + Number(num[prop]);
+    }, 0) / (arr.length - 10)).toFixed(4);
+
+    rank.push({ level1NameZh: 'other', [prop]: attr });
+  } else {
+    rank = arr;
+  }
+  return rank;
+};
+    
+```
+
 #### 删除数组最后一个元素
 ```JS
 var x = ['1','2','3','4'];
