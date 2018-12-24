@@ -42,12 +42,28 @@ handlePrint=()=>{
       message.warning('请先执行统计操作!');
     }
   }
+//way5
+
+  // 差集
+   let a = [1, 2, 3]
+    let b = [2, 4, 5]
+ 
+    let aSet = new Set(a)
+    let bSet = new Set(b)
+
+    let differenceNew = Array.from(new Set(a.concat(b).filter(v => aSet.has(v) && !bSet.has(v))) [1,3]
+```
+#### 并集
+```
+let union = Array.from(new Set(a.concat(b))) // [1,2,3,4,5]
 
 ```
 #### Intersect数组取交集
 ```Js
 //Way1
-let intersectionSet = new Set([...arr1].filter(x => arr2.has(x)));
+let a = [1, 2, 3];    let b = [2, 4, 5];
+let bSet = new Set(b);
+let intersection = Array.from(new Set(a.filter(v => bSet.has(v)))// [2]
 //Way2
 var Intersect=()=>{
   var intersect = [];
