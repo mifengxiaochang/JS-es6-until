@@ -790,6 +790,22 @@ var a = 1;
 }
 console.log (a);   // undefined
 5. 请写出单例模式的实现，至少两种。
+```
+// 单例模式
+function Construct(){
+    // 确保只有单例
+    if( Construct.unique !== undefined ){
+        return Construct.unique; 
+    }
+    // 其他代码
+    this.name = "NYF";
+    this.age="24";
+    Construct.unique = this;
+}
+var t1 = new Construct();
+var t2 = new Construct();
+
+```
 6.请描述React组件加载时生命周期执行顺序，组件更新时生命周期执行顺序。
 7.HTTP 状态消息 200 302 304 403 404 500 分别表示什么？
 8.请写出ES6中Array.isArray()的代码实现。
