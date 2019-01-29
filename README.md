@@ -439,7 +439,7 @@ function GetLength(str) {
 
 ####计算页数
 ```JS
-let pageCont = Math.ceil(totalCount / pageSize);
+let pageCont = Math.ceil(totalCount / pageSize); //Math.ceil返回大于等于参数x的最小整
 ```
 
 #### 判断空对象
