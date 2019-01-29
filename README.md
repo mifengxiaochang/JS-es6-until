@@ -790,8 +790,14 @@ var a = 1;
 }
 console.log (a);   // undefined
 5. 请写出单例模式的实现，至少两种。
+
+-- 传统单例模式：
+
+ 保证一个类仅有一个实例，并提供一个访问它的全局访问点。
+ 用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象
+-- 实现单例核心思想
 ```
-// 单例模式
+// 1、构造函数内部判断
 function Construct(){
     // 确保只有单例
     if( Construct.unique !== undefined ){
@@ -804,7 +810,49 @@ function Construct(){
 }
 var t1 = new Construct();
 var t2 = new Construct();
+//2、闭包方式
+//2.1
+var single = (function(){
+    var unique;
+    function Construct(){
+        // ... 生成单例的构造函数的代码
+    }
+    unique = new Constuct();
+    return unique;
+})();
+  如果希望会用调用 single() 方式来使用，那么也只需要将内部的 return 改为
+    var single = (function(){
+    var unique;
+    function Construct(){
+        // ... 生成单例的构造函数的代码
+    }
+    unique = new Constuct();
+    return function(){
+        return unique;
+    } 
+})
+    
+//2.2
+var CreateDiv = (function(){ 
+　　　　　　var instance;
+　　　　　　var CreateDiv = function( html ){ 
+　　　　　　　　　　if ( instance ){
+　　　　　　　　　　　　return instance; 
+　　　　　　　　　　}
+　　　　　　　　　　this.html = html; this.init();
+　　　　　　　　　　return instance = this;
+};
+　　　　　　CreateDiv.prototype.init = function(){
+　　　　　　　　var div = document.createElement( 'div' ); 
+　　　　　　　　div.innerHTML = this.html; 
+　　　　　　　　document.body.appendChild( div );
+　　　　　　};
+　　　　　　return CreateDiv; 
+})();
 
+var a = new CreateDiv( 'sven1' ); 
+var b = new CreateDiv( 'sven2' );
+alert ( a === b ); // true
 ```
 6.请描述React组件加载时生命周期执行顺序，组件更新时生命周期执行顺序。
 7.HTTP 状态消息 200 302 304 403 404 500 分别表示什么？
