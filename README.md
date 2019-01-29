@@ -833,26 +833,31 @@ var single = (function(){
 })
     
 //2.2
-var CreateDiv = (function(){ 
-　　　　　　var instance;
-　　　　　　var CreateDiv = function( html ){ 
-　　　　　　　　　　if ( instance ){
-　　　　　　　　　　　　return instance; 
-　　　　　　　　　　}
-　　　　　　　　　　this.html = html; this.init();
-　　　　　　　　　　return instance = this;
-};
-　　　　　　CreateDiv.prototype.init = function(){
-　　　　　　　　var div = document.createElement( 'div' ); 
-　　　　　　　　div.innerHTML = this.html; 
-　　　　　　　　document.body.appendChild( div );
-　　　　　　};
-　　　　　　return CreateDiv; 
-})();
+var CreateDiv = function (html) {
+        this.html = html;
+        this.init();
+    };
+    
+    CreateDiv.prototype.init = function () {
+        var div = document.createElement('div');
+        div.innerHTML = this.html;
+        document.body.appendChild(div);
+    };
+    
+    var ProxySingletonCreateDiv = (function () {
+        var instance;
+        return function (html) {
+            if (!instance) {
+                instance = new CreateDiv(html);
+            }
+            return instance;
+        }
+    })();
+    
+    var a = new ProxySingletonCreateDiv('sven1');
+    var b = new ProxySingletonCreateDiv('sven2');
 
-var a = new CreateDiv( 'sven1' ); 
-var b = new CreateDiv( 'sven2' );
-alert ( a === b ); // true
+    alert(a === b); //true
 ```
 6.请描述React组件加载时生命周期执行顺序，组件更新时生命周期执行顺序。
 7.HTTP 状态消息 200 302 304 403 404 500 分别表示什么？
