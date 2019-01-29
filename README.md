@@ -858,6 +858,15 @@ var CreateDiv = function (html) {
     var b = new ProxySingletonCreateDiv('sven2');
 
     alert(a === b); //true
+    
+   
+    //3.单例模式抽象，分离创建对象的函数和判断对象是否已经创建
+    var getSingle = function (fn) {
+        var result;
+        return function () {
+            return result || ( result = fn.apply(this, arguments) );
+        }
+    };
 ```
 6.请描述React组件加载时生命周期执行顺序，组件更新时生命周期执行顺序。
 7.HTTP 状态消息 200 302 304 403 404 500 分别表示什么？
