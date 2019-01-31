@@ -436,6 +436,12 @@ function GetLength(str) {
   return realLength;
 }
 ```
+### 判断字符状态
+```
+console.log(str.match(/[\u0000-\u00ff]/g))     //半角   
+console.log(str.match(/[\u4e00-\u9fa5]/g))     //中文   
+console.log(str.match(/[\uff00-\uffff]/g))     //全角  
+```
 
 ####计算页数
 ```JS
