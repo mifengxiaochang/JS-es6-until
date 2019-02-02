@@ -371,7 +371,12 @@ Number.isInteger(1.11)//false
 顺便记录下
 
 转换 Number.parseInt - 将字符串或数字转换为整数 Number.parseFloat - 将字符串或数字转换为浮点数
+### 判断是否是数字
+```
+Number.isFinite();//只对数值有效 判断是否是无穷也可以用为是否为数字
+isFinite();// 将非数值的值转为数值，判断是否是数字
 
+```
 ### 单词匹配
 ```jS
 let url= "https://github.com/mifengxiaochang/JS-es6-until/edit/master/README.md";
