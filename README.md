@@ -935,6 +935,25 @@ export function digitUppercase(n) {
 
 
 ```
+### >>> 无符号右移0
+本质上就是保证x有意义（为数字类型），且为正整数，在有效的数组范围内（0 ～ 0xFFFFFFFF），且在无意义的情况下缺省值为0。
+1、如果不能转换为Number，那就为0
+2、如果为非整数，先转换为整数
+  ```
+  function ToInteger(x) {
+    x = Number(x);
+    return x < 0 ? Math.ceil(x) : Math.floor(x);
+  }
+  ```
+3、如果是正数，返回正数，如果是负数，返回负数 + 2的32次方
+    ```
+    function modulo(a, b) {
+        return a - Math.floor(a/b)*b;
+    }
+    function ToUint32(x) {
+        return modulo(ToInteger(x), Math.pow(2, 32));
+    }
+    ```
 随机颜色
 ```
 // 生成随机颜色
@@ -942,7 +961,7 @@ export function digitUppercase(n) {
         colors.push( 
           'rgb( ' + 
             ( Math.random() * 255 >> 0 ) + ',' +   //>>>是无符号右移，>>是有符号移位
-            ( Math.random() * 255 >> 0 ) + ',' +  //移位0,一将不是number类型的数据转换为number;二将number转换为无符号的32bit数据(无符号整数)
+            ( Math.random() * 255 >> 0 ) + ',' +  //移位0,一将不是number类型的数据转换为number;二将number转换为整数
             ( Math.random() * 255 >> 0 ) +       //一个小于255的随机数
           ' )'
         );
