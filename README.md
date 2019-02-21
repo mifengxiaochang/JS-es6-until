@@ -938,13 +938,13 @@ export function digitUppercase(n) {
 随机颜色
 ```
 // 生成随机颜色
-        for ( var i = 0; i < count; i++ )  {
-            colors.push( 
-            	'rgb( ' + 
-            		( Math.random() * 255 >> 0 ) + ',' +
-            		( Math.random() * 255 >> 0 ) + ',' + 
-            		( Math.random() * 255 >> 0 ) + 
-            	' )'
-            );
-        }
+      for ( var i = 0; i < count; i++ )  {
+        colors.push( 
+          'rgb( ' + 
+            ( Math.random() * 255 >> 0 ) + ',' +   //>>>是无符号右移，>>是有符号移位
+            ( Math.random() * 255 >> 0 ) + ',' +  //移位0,一将不是number类型的数据转换为number;二将number转换为无符号的32bit数据(无符号整数)
+            ( Math.random() * 255 >> 0 ) +       //一个小于255的随机数
+          ' )'
+        );
+    }
 ```
