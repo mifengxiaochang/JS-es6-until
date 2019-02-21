@@ -935,3 +935,16 @@ export function digitUppercase(n) {
 
 
 ```
+随机颜色
+```
+// 生成随机颜色
+        for ( var i = 0; i < count; i++ )  {
+            colors.push( 
+            	'rgb( ' + 
+            		( Math.random() * 255 >> 0 ) + ',' +
+            		( Math.random() * 255 >> 0 ) + ',' + 
+            		( Math.random() * 255 >> 0 ) + 
+            	' )'
+            );
+        }
+```
