@@ -2,6 +2,54 @@
 ---
 
 ## 数组
+
+### 删除数组的重复项
+```
+var fruits = [“banana”, “apple”, “orange”, “watermelon”, “apple”, “orange”, “grape”, “apple”];
+// First method
+var uniqueFruits = Array.from(new Set(fruits));
+console.log(uniqueFruits); // returns [“banana”, “apple”, “orange”, “watermelon”, “grape”]
+// Second method
+var uniqueFruits2 = […new Set(fruits)];
+console.log(uniqueFruits2); // returns [“banana”, “apple”, “orange”, “watermelon”, “grape”]
+```
+### form达到map效果
+```
+var friends = [
+    { name: ‘John’, age: 22 },
+    { name: ‘Peter’, age: 23 },
+    { name: ‘Mark’, age: 24 },
+    { name: ‘Maria’, age: 22 },
+    { name: ‘Monica’, age: 21 },
+    { name: ‘Martha’, age: 19 },
+]
+var friendsNames = Array.from(friends, ({name}) => name);
+console.log(friendsNames); // returns [“John”, “Peter”, “Mark”, “Maria”, “Monica”, “Martha”]
+
+```
+
+### 将数组转换为对象
+```
+var fruits = [“banana”, “apple”, “orange”, “watermelon”];
+var fruitsObj = { …fruits };
+console.log(fruitsObj); // returns {0: “banana”, 1: “apple”, 2: “orange”, 3: “watermelon”, 4: “apple”, 5: “orange”, 6: “grape”, 7: “apple”}
+```
+### 数组合并
+```
+var fruits = [“apple”, “banana”, “orange”];
+var meat = [“poultry”, “beef”, “fish”];
+var vegetables = [“potato”, “tomato”, “cucumber”];
+var food = […fruits, …meat, …vegetables];
+console.log(food); // [“apple”, “banana”, “orange”, “poultry”, “beef”, “fish”, “potato”, “tomato”, “cucumber”]
+
+```
+### lastIndexOf() 方法
+最后一次的下标
+```
+var nums = [1, 5, 2, 6, 3, 5, 2, 3, 6, 5, 2, 7];
+var lastIndex = nums.lastIndexOf(5);
+console.log(lastIndex); // returns 9
+```
 #### Except取差集
 ```JS
   //way1
@@ -364,6 +412,15 @@ var index = array.indexOf(4);
 if(index>-1){
 array.splice(index,1);
 }
+```
+
+### 删除数组虚值
+在 JS 中，虚值有 false, 0，''， null, NaN, undefined。咱们可以 .filter() 方法来过滤这些虚值。
+```
+var mixedArr = [0, “blue”, “”, NaN, 9, true, undefined, “white”, false];
+var trueArr = mixedArr.filter(Boolean);
+console.log(trueArr); // returns [“blue”, 9, true, “white”]
+
 ```
 
 
