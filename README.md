@@ -847,6 +847,11 @@ export function getQueryString(url) {
 }
 
 ```
+## 格式化国际化日期
+```
+new Date().toLocaleString('sv',{ year: 'numeric',month: 'numeric',day: 'numeric'});// 瑞典："2020-01-16"
+new Date().toLocaleString('sv',{ year: 'numeric',month: 'numeric',day: 'numeric'});// 中国："2020/1/16"
+```
 
 #### 几个面试题
 
