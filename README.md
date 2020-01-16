@@ -523,6 +523,11 @@ function GetLength(str) {
   return realLength;
 }
 ```
+### 随机生成字符串
+```
+Math.random().toString(36).substr(2, 1);
+
+```
 ### 判断字符状态
 ```
 console.log(str.match(/[\u0000-\u00ff]/g))     //半角   
