@@ -559,6 +559,35 @@ export const isEmptyObject = (e) =>{
   } return true;
 };
 ```
+#### 选择和筛选对象属性
+```
+// pick
+function pick(obj, keys) {
+    return keys.map(k => k in obj ? {[k]: obj[k]} : {})
+               .reduce((res, o) => Object.assign(res, o), {});
+}
+// eg
+const row = {
+    'accounts.id': 1,
+    'client.name': 'John Doe',
+    'bank.code': 'MDAKW213'
+};
+const table = [
+    row,
+    {'accounts.id': 3, 'client.name': 'Steve Doe', 'bank.code': 'STV12JB'}
+];
+pick(row, ['client.name'])  // 取到了 client name
+table.map(row => pick(row, ['client.name'])); // 取到了一系列 client name
+
+
+// reject 利用 pick
+function reject(obj, keys) {
+    const vkeys = Object.keys(obj)
+        .filter(k => !keys.includes(k));
+    return pick(obj, vkeys);
+}
+
+```
 #### 深拷贝（解决对象引用问题）
 ```JS
 function deepCopy(obj) {
