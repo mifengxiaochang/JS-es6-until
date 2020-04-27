@@ -47,6 +47,12 @@ const isTwoPresent = [0, 1, 2, 3, 4].some(function(val, i) {
 });
 console.log(isTwoPresent);
 //> true
+
+// Using .evert to brack a loop
+const isSmallerThan10 = num => num < 10;
+
+console.log([2, 5, 8, 1, 4].every(isSmallerThan10));  // true
+console.log([12, 5, 8, 1, 4].every(isSmallerThan10)); // false
 ```
 
 ### 将数组转换为对象
