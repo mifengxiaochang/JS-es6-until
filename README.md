@@ -28,7 +28,7 @@ console.log(friendsNames); // returns [“John”, “Peter”, “Mark”, “M
 
 ```
 
-### 代替forEach循环终止
+### 代替forEach终止循环
 ```
 [0, 1, 2, 3, 4].some(function(val, i) {
   if (val === 2) {
