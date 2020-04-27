@@ -28,6 +28,27 @@ console.log(friendsNames); // returns [“John”, “Peter”, “Mark”, “M
 
 ```
 
+### 代替forEach循环终止
+```
+[0, 1, 2, 3, 4].some(function(val, i) {
+  if (val === 2) {
+    return true;
+  }
+  console.log(val); // your code
+});
+//> 0, 1
+
+//eg2
+// Array contains 2
+const isTwoPresent = [0, 1, 2, 3, 4].some(function(val, i) {
+  if (val === 2) {
+    return true; // break
+  }
+});
+console.log(isTwoPresent);
+//> true
+```
+
 ### 将数组转换为对象
 ```
 var fruits = [“banana”, “apple”, “orange”, “watermelon”];
