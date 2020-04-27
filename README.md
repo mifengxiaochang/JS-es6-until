@@ -450,6 +450,13 @@ console.log(trueArr); // returns [“blue”, 9, true, “white”]
 
 ```
 
+## 获取文件扩展名
+```
+function getFileExtension3(filename) {
+  return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+}
+
+```
 
 ## 数字、字符串、对象(⊙o⊙)…
 #### 忽略大小写相等
