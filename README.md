@@ -13,6 +13,13 @@ console.log(uniqueFruits); // returns [“banana”, “apple”, “orange”, 
 var uniqueFruits2 = […new Set(fruits)];
 console.log(uniqueFruits2); // returns [“banana”, “apple”, “orange”, “watermelon”, “grape”]
 ```
+### 自动设置对象数组属性
+```
+// 构建前top10名
+const tops = Array(10)
+.fill(1)
+.map((e, i) => ({ key: (i + 1).toString(), value: `Top ${i + 1}` }));
+```
 ### form达到map效果
 ```
 var friends = [
