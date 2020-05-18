@@ -565,8 +565,17 @@ function GetLength(str) {
 }
 ```
 ### 随机生成字符串
-```
+```js
 Math.random().toString(36).substr(2, 1);
+// 随机生成一个字母和6个数字
+// method 1
+var abcS='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+abcS[Math.random() * abcS.length | 0] + (Math.random() * (999999 - 100000 + 1) | 0).toString()；
+//method 2
+// 小写和数字
+String.fromCharCode(Math.round(Math.random() * (122 - 97) + 97))+ (Math.random() * (999999 - 100000 + 1) | 0).toString()
+//大写和数字
+String.fromCharCode(Math.round(Math.random() * (90 - 65) + 65))+ (Math.random() * (999999 - 100000 + 1) | 0).toString()
 
 ```
 ### 判断字符状态
