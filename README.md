@@ -205,7 +205,7 @@ const getTop11 = (arr, prop) => {
   if (arr.length > 11) {
     const topTen = arr.slice(0, 10);
     rank = topTen;
-    // 其他求平均值
+    // 其他前十求平均值
     attr = (arr.slice(10).reduce((sum, num) => {
       return sum + Number(num[prop]);
     }, 0) / (arr.length - 10)).toFixed(4);
@@ -477,6 +477,21 @@ function getFileExtension3(filename) {
     }
   }
 ```
+### 数字截断小数位
+```JS
+const toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
+
+```
+### 获取小数位数
+```
+function DECPOS(num){
+    const decimalIndex = String(num).indexOf(".") + 1;
+    const decimalNum = String(num).length - decimalIndex;
+    return decimalIndex > 0 ? decimalNum : 0
+}
+  
+
+```
 #### 是否是整数
 ```JS
   //way1
@@ -563,6 +578,12 @@ function GetLength(str) {
   }
   return realLength;
 }
+```
+###  获取随机布尔值
+```JS
+const randomBoolean = () => Math.random() >= 0.5;
+console.log(randomBoolean());
+//Math.random()会返回 0 到1之间随机的数字，因此可以利用返回值是否比 0.5小来返回随机的布尔值。
 ```
 ### 随机生成字符串
 ```js
@@ -936,7 +957,15 @@ export function getQueryString(url) {
 new Date().toLocaleString('sv',{ year: 'numeric',month: 'numeric',day: 'numeric'});// 瑞典："2020-01-16"
 new Date().toLocaleString('sv',{ year: 'numeric',month: 'numeric',day: 'numeric'});// 中国："2020/1/16"
 ```
-
+### 获取日期对象的时间部分
+```
+const timeFromDate = date => date.toTimeString().slice(0, 8);
+console.log(timeFromDate(new Date(2021, 0, 10, 17, 30, 0))); 
+// Result: "17:30:00"
+console.log(timeFromDate(new Date()));
+// Result: will log the current time
+//日期对象的 .toTimeString()方法可以获取时间格式的字符串，截取前面部分就可以了：
+```
 #### 几个面试题
 
 1.下面代码的输出结果是什么？
@@ -1203,6 +1232,28 @@ function example( err, optionalA, optionalB, callback ) {
     example(null, 'AA', function (err) {});
 
     example(null, 'AAAA', 'BBBB', function (err) {});
+    ```
+    ## Document
+    #### 判断浏览器 Tab 窗口是否为活动窗口
+    ```
+    const isBrowserTabInView = () => document.hidden;//利用document.hidden属性可以判断浏览器窗口是否可见（当前活动窗口）。
+    ```
+    ### 是否支持 touch 事件
+    ```JS
+    const touchSupported = () => {
+      ('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch);
+    }
+    
+    ```
+    ### 判断是否为Apple设备
+    ```JS
+    const isAppleDevice = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+    ```
+    ###  滚动到页面顶部
+    ```JS
+    const goToTop = () => window.scrollTo(0, 0);
+   // window.scrollTo() 方法接受x和y坐标参数，用于指定滚动目标位置。全都设置为 0，可以回到页面顶部。注意：IE 不支持 .scrollTo()方法
+    
     ```
     
     
