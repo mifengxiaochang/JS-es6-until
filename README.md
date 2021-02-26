@@ -1167,9 +1167,33 @@ export function digitUppercase(n) {
         );
     }
 ```
+  ## Document
+    #### 判断浏览器 Tab 窗口是否为活动窗口
+    ```
+    const isBrowserTabInView = () => document.hidden;//利用document.hidden属性可以判断浏览器窗口是否可见（当前活动窗口）。
+    ```
+    ### 是否支持 touch 事件
+    ```JS
+    const touchSupported = () => {
+      ('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch);
+    }
+    
+    ```
+    ### 判断是否为Apple设备
+    ```JS
+    const isAppleDevice = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+    ```
+    ###  滚动到页面顶部
+    ```JS
+    const goToTop = () => window.scrollTo(0, 0);
+   // window.scrollTo() 方法接受x和y坐标参数，用于指定滚动目标位置。全都设置为 0，可以回到页面顶部。注意：IE 不支持 .scrollTo()方法
+    
+    ```
+    
 ## 封装
+
 #### 函数中使用可选参数（可选回调函数）
-```
+```JS
 function example( err, optionalA, optionalB, callback ) {
         // 使用数组取出arguments
         var args = new Array(arguments.length);
@@ -1205,8 +1229,8 @@ function example( err, optionalA, optionalB, callback ) {
         /* 你想做的逻辑 */
 
     }
-
-    // ES6语法书写更简短
+     // ES6语法书写更简短
+    
     function example(...args) {
         // 第一个参数为错误参数
         const err = args.shift();
@@ -1232,28 +1256,5 @@ function example( err, optionalA, optionalB, callback ) {
     example(null, 'AA', function (err) {});
 
     example(null, 'AAAA', 'BBBB', function (err) {});
-    ```
-    ## Document
-    #### 判断浏览器 Tab 窗口是否为活动窗口
-    ```
-    const isBrowserTabInView = () => document.hidden;//利用document.hidden属性可以判断浏览器窗口是否可见（当前活动窗口）。
-    ```
-    ### 是否支持 touch 事件
-    ```JS
-    const touchSupported = () => {
-      ('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch);
-    }
     
-    ```
-    ### 判断是否为Apple设备
-    ```JS
-    const isAppleDevice = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
-    ```
-    ###  滚动到页面顶部
-    ```JS
-    const goToTop = () => window.scrollTo(0, 0);
-   // window.scrollTo() 方法接受x和y坐标参数，用于指定滚动目标位置。全都设置为 0，可以回到页面顶部。注意：IE 不支持 .scrollTo()方法
-    
-    ```
-    
-    
+```
